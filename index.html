@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es-UY">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light only">
+<meta name="robots" content="noindex, nofollow">
+<title>Mecánica Machado · Gestión del taller</title>
+<link rel="icon" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700&family=Saira:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+<!-- ===== INGRESO ===== -->
+<div id="login">
+  <div class="login-wrap">
+
+    <!-- Panel de marca (se esconde en el celular) -->
+    <aside class="lg-brand">
+      <div class="lg-stripe"></div>
+      <img class="lg-logo" src="img/logo.png" alt="Mecánica Machado Rivera">
+      <div class="lg-eslogan">Gestión del taller</div>
+      <p class="lg-txt">Camiones, órdenes de reparación y números del taller, todo en un solo lugar.</p>
+      <ul class="lg-list">
+        <li><b>Cada camión por matrícula</b>Con su ficha y toda su historia de trabajos</li>
+        <li><b>Presupuestos en dos minutos</b>Listos para mandar por WhatsApp, mail o PDF</li>
+        <li><b>El taller al día</b>Órdenes por etapa, cobros, gastos y cierre de mes</li>
+      </ul>
+      <div class="lg-pie">MMR · Rivera · Uruguay</div>
+    </aside>
+
+    <!-- Formulario -->
+    <section class="lg-form">
+      <img class="lg-logo-mini" src="img/logo.png" alt="">
+      <h1>Ingresar</h1>
+      <p class="lg-sub" id="login-sub">Escribí tu correo y tu contraseña para entrar al sistema.</p>
+      <div class="lg-campo" id="campo-email">
+        <label for="login-email">Correo</label>
+        <input id="login-email" type="email" autocomplete="username" placeholder="nombre@correo.com">
+      </div>
+      <label for="login-pass">Contraseña</label>
+      <div class="lg-pass">
+        <input id="login-pass" type="password" autocomplete="current-password" placeholder="••••••••">
+        <button type="button" class="lg-ojo" onclick="verPass(this)" title="Ver la contraseña">👁</button>
+      </div>
+      <button class="lg-btn" id="login-btn" onclick="entrar()">Ingresar</button>
+      <button type="button" class="lg-olvide" id="login-olvide" onclick="olvidePass()">¿Olvidaste tu contraseña?</button>
+      <button type="button" class="lg-otro" id="login-otro" onclick="otroCorreo()">Entrar con otro correo</button>
+      <div class="login-err" id="login-err"></div>
+      <div class="login-hint" id="login-hint"></div>
+      <div class="wydan-pie"><img src="img/wydan.png" alt="Wydan Solutions">Desarrollado por <b>WYDAN SOLUTIONS</b></div>
+    </section>
+
+  </div>
+</div>
+
+<!-- ===== APLICACIÓN ===== -->
+<div id="app" class="hidden">
+
+  <nav class="lateral">
+    <div class="lat-logo">
+      <img src="img/logo-chico.png" alt="Mecánica Machado Rivera">
+      <div><b>Mecánica Machado</b><span>Taller de camiones · Rivera</span></div>
+    </div>
+    <div class="lat-nav" id="nav"></div>
+    <div class="lat-pie">
+      <button class="lat-mini" id="btn-moneda" onclick="toggleMoneda()" title="Ver los importes en pesos, dólares o reales">$ Pesos</button>
+      <div class="hdr-wrap">
+        <button class="lat-mini" onclick="toggleMenu(event)">⋯ Más opciones</button>
+        <div class="hdr-menu" id="hdr-menu">
+          <button onclick="respaldar();cerrarMenu()">⬇ Descargar respaldo</button>
+          <button onclick="restaurar();cerrarMenu()">⬆ Restaurar respaldo</button>
+          <button onclick="cambiarPass();cerrarMenu()">🔑 Cambiar contraseña</button>
+        </div>
+      </div>
+      <button class="lat-salir" onclick="salir()">Salir</button>
+      <div class="lat-wydan"><span>Desarrollado por</span><img src="img/wydan-horizontal.png" alt="Wydan Solutions"></div>
+    </div>
+  </nav>
+
+  <main class="principal">
+    <header class="enc" id="enc"></header>
+    <div class="view active" id="view-panel"></div>
+    <div class="view" id="view-presup"></div>
+    <div class="view" id="view-reparaciones"></div>
+    <div class="view" id="view-clientes"></div>
+    <div class="view" id="view-camiones"></div>
+    <div class="view" id="view-finanzas"></div>
+    <div class="view" id="view-kpis"></div>
+    <div class="view" id="view-config"></div>
+  </main>
+
+</div>
+
+<!-- Ventana de alta / edición -->
+<div class="modal-bg" id="modal-bg" onclick="if(event.target===this)closeModal()">
+  <div class="modal" id="modal">
+    <div class="modal-head"><h3 id="modal-title"></h3><button class="modal-close" onclick="closeModal()">×</button></div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-foot">
+      <div id="modal-left"></div>
+      <div class="right"><button class="btn" onclick="closeModal()">Cancelar</button><button class="btn btn-primary" id="modal-save">Guardar</button></div>
+    </div>
+  </div>
+</div>
+
+<div class="dd" id="dd"></div>
+<div class="toast" id="toast"></div>
+<datalist id="dl-matriculas"></datalist>
+<datalist id="dl-clientes"></datalist>
+<datalist id="dl-proveedores"></datalist>
+
+<!-- El orden de los scripts importa: constantes → datos → utilidades → secciones → arranque -->
+<script src="js/firebase-config.js"></script>
+<script src="js/constantes.js"></script>
+<script src="js/datos.js"></script>
+<script src="js/datos-ejemplo.js"></script>
+<script src="js/adjuntos.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/moneda.js"></script>
+<script src="js/exportar.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/encabezado.js"></script>
+<script src="js/panel.js"></script>
+<script src="js/presupuestos.js"></script>
+<script src="js/presupuesto-envio.js"></script>
+<script src="js/reparaciones.js"></script>
+<script src="js/orden.js"></script>
+<script src="js/clientes.js"></script>
+<script src="js/camiones.js"></script>
+<script src="js/finanzas.js"></script>
+<script src="js/finanzas-flujo.js"></script>
+<script src="js/kpis.js"></script>
+<script src="js/config.js"></script>
+<script src="js/camion-esquema.js"></script>
+<script src="js/pantalla-taller.js"></script>
+<script src="js/formularios.js"></script>
+<script src="js/login.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
