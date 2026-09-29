@@ -524,6 +524,19 @@ i.m-golpe{background:#D9480F} i.m-rayon{background:#6A4BC0} i.m-ambos{background
 .avisos-lista .av-ico{font-size:17px;flex:none}
 .avisos-lista b{display:block}
 .avisos-lista small{display:block;opacity:.85;font-weight:500;margin-top:2px}
+/* Ventana de avisos: cada uno se puede leer o marcar como leído con el ✓ */
+.avisos-lista .av-txt{flex:1;cursor:pointer;min-width:0}
+.av-barra{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:11px;
+  font-size:12.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+.aviso .av-ok{flex:none;width:28px;height:28px;border-radius:8px;border:none;cursor:pointer;
+  background:rgba(255,255,255,.65);color:inherit;font-size:14px;font-weight:700;line-height:1}
+.aviso .av-ok:hover{background:#fff}
+.aviso .av-txt{flex:1;cursor:pointer;min-width:0}
+.av-leidos{margin-top:16px;border-top:1px solid var(--border);padding-top:12px}
+.av-leidos-t{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px}
+.av-leido{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 0;font-size:13px;color:var(--muted)}
+.av-leido i{font-style:normal;opacity:.7}
+.av-pie{margin-top:14px;font-size:12px;color:var(--muted)}
 @media(max-width:900px){
   .enc{position:static;padding:12px 0 10px}
   .buscador input{width:100%;max-width:none}

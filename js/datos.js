@@ -40,6 +40,12 @@ function cfgDef(){
        puede vender el taller y qué porcentaje se aprovechó. */
     jornada:{dias:22, horas:8.4, faltas:0},
     plantillas:[],            // plantillas de diagnóstico reutilizables
+    /* Avisos de la campanita. Qué tipos están prendidos, con cuántos días de anticipación
+       avisa, y cuáles ya se marcaron como leídos. Los valores de fábrica y la lista de
+       tipos están en encabezado.js (AVISOS_DEF / TIPOS_AVISO). */
+    avisos:{},
+    avisosDias:{cobros:7, gastos:7, taller:15},
+    avisosLeidos:{},
     validezDias:15,           // validez por defecto de un presupuesto
     tc:{},                    // cotizaciones por fecha: {'2026-03-14':{usd:41.2, brl:7.6}}
     tcHoy:{usd:0,brl:0},      // cotización del día (se puede escribir a mano)

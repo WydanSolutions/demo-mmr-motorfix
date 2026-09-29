@@ -28,11 +28,12 @@ function renderPanel(){
         +'<b>'+n+'</b><span>'+esc(e.n)+'</span></button>';
     }).join('')+'</div>';
 
-  /* Avisos: deudas vencidas, presupuestos por responder y campañas pendientes de camiones en el taller */
-  let avisos='';
-  if(vencidos.length) avisos+='<div class="aviso rojo"><span>⚠</span><div><b>Hay '+vencidos.length+' cobro(s) vencido(s) por '+fMon(tVencido)+'</b>Mirá Finanzas → Trabajos entregados para avisarle al cliente.</div></div>';
-  const presEnv=Store.all('presupuestos').filter(p=>p.estado==='Enviado');
-  if(presEnv.length) avisos+='<div class="aviso"><span>📝</span><div><b>'+presEnv.length+' presupuesto(s) enviado(s) esperando respuesta</b>Cuando el cliente aprueba, se genera la orden sola.</div></div>';
+  /* Avisos: los mismos de la campanita (encabezado.js). Se ven solo los que no se marcaron
+     como leídos y los tipos que estén prendidos en Configuración → Avisos. */
+  const avisos=avisosDelDia().pend.map(a=>
+      '<div class="aviso '+(a.t==='ama'?'':'rojo')+'"><span>'+a.ico+'</span>'
+      +'<div class="av-txt" onclick="'+a.a+'"><b>'+esc(a.txt)+'</b>'+esc(a.sub)+'</div>'
+      +'<button class="av-ok" onclick="avisoLeer(\''+a.id+'\')" title="Marcar como leído">✓</button></div>').join('');
 
   /* En el taller ahora */
   const filas=enTaller().sort((a,b)=>ETAPAS.findIndex(e=>e.id===b.etapa)-ETAPAS.findIndex(e=>e.id===a.etapa)).map(o=>{

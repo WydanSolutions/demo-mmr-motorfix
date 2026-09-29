@@ -93,6 +93,8 @@ function renderConfig(){
         +'<div class="srow"><div><div class="st">Roles del personal</div><div class="ss">'+cfg.roles.length+' cargado(s)</div></div><button class="btn btn-sm" onclick="listaEditable(\'Roles del personal\',\'roles\',\'Ej.: Electricista\')">Editar</button></div>'
         +'<div class="srow"><div><div class="st">Plantillas de diagnóstico</div><div class="ss">'+(cfg.plantillas||[]).length+' guardada(s)</div></div><button class="btn btn-sm" onclick="verPlantillas()">Ver</button></div>'
       +'</div></div>'
+
+      +tarjetaAvisos()
     +'</div>'
 
     +'<div class="card"><div class="card-head"><h3>Funcionarios</h3><span class="csub">El costo por hora es lo que le cuesta al taller cada hora de trabajo</span></div>'
