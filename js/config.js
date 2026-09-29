@@ -109,6 +109,10 @@ function renderConfig(){
         +'<input type="checkbox"'+((cfg.rolesProd||[]).indexOf(r)>=0?' checked':'')+' onchange="rolProd(\''+esc(r).replace(/'/g,"\\'")+'\',this.checked)"> '+esc(r)+'</label>').join('')
       +'</div></div></div>'
 
+    +'<div class="card"><div class="card-head"><h3>Tu cuenta</h3><span class="csub">La contraseña con la que entrás a la página</span></div><div class="card-body">'
+      +'<div class="srow"><div><div class="st">Cambiar la contraseña</div><div class="ss">Te pide la actual y la nueva dos veces.</div></div><button class="btn btn-sm" onclick="cambiarPass()">🔑 Cambiar</button></div>'
+    +'</div></div>'
+
     +'<div class="card"><div class="card-head"><h3>Respaldo de los datos</h3></div><div class="card-body">'
       +'<div class="srow"><div><div class="st">Descargar una copia</div><div class="ss">Guarda todo en un archivo en tu computadora.</div></div><button class="btn btn-sm" onclick="respaldar()">⬇ Descargar</button></div>'
       +'<div class="srow"><div><div class="st">Restaurar desde un archivo</div><div class="ss">Reemplaza los datos actuales por los del archivo.</div></div><button class="btn btn-sm" onclick="restaurar()">⬆ Restaurar</button></div>'

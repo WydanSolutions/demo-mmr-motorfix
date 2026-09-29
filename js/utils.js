@@ -52,9 +52,10 @@ function ddMenu(ev,items){ // items: [{t:'texto',fn:'codigo()'}]
 }
 function cerrarDD(){ $('#dd').classList.remove('open'); }
 document.addEventListener('click',cerrarDD);
-function toggleMenu(ev){ ev.stopPropagation(); $('#hdr-menu').classList.toggle('open'); }
-function cerrarMenu(){ $('#hdr-menu').classList.remove('open'); }
-document.addEventListener('click',e=>{ if(!e.target.closest('.hdr-wrap')) cerrarMenu(); });
+/* El menú «⋯ Más opciones» se sacó del costado (29/09/2026): sus tres opciones están en
+   Configuración. Las funciones quedan por si algo todavía las llama, sin romperse. */
+function toggleMenu(ev){ if(ev) ev.stopPropagation(); const m=$('#hdr-menu'); if(m) m.classList.toggle('open'); }
+function cerrarMenu(){ const m=$('#hdr-menu'); if(m) m.classList.remove('open'); }
 
 /* ---------- ETIQUETAS ---------- */
 function pill(txt,cls){ return '<span class="pill '+(cls||'p-gris')+'">'+esc(txt)+'</span>'; }

@@ -135,12 +135,6 @@ body.real #login-hint{display:none}
 .lat-wydan:hover{opacity:1;transition:.2s}
 .lat-wydan span{font-size:7.5px;letter-spacing:1.3px;text-transform:uppercase;color:var(--azul-suave)}
 .lat-wydan img{width:92px;height:auto;background:#fff;border-radius:6px;padding:4px 7px;display:block}
-.hdr-wrap{position:relative}
-.hdr-menu{position:absolute;left:0;right:0;bottom:calc(100% + 6px);background:#fff;border:1px solid var(--border);
-  border-radius:10px;box-shadow:var(--shadow-alta);padding:6px;z-index:120;display:none}
-.hdr-menu.open{display:block}
-.hdr-menu button{display:block;width:100%;text-align:left;background:none;border:none;padding:9px 12px;border-radius:7px;font-size:13px;color:var(--text);font-weight:600}
-.hdr-menu button:hover{background:var(--card-3);color:var(--azul)}
 
 main.principal{margin-left:var(--ancho-menu);min-height:100vh;padding:0 26px 46px;max-width:none}
 .view{display:none;animation:fade .2s ease}
@@ -473,7 +467,7 @@ i.m-golpe{background:#D9480F} i.m-rayon{background:#6A4BC0} i.m-ambos{background
   .nav-btn.active .tx{display:inline}
   .nav-btn.active::before{display:none}
   .lat-pie{flex-direction:row;border:none;padding:0;flex:none}
-  .lat-pie .lat-wydan,.lat-pie .hdr-wrap{display:none}
+  .lat-pie .lat-wydan{display:none}
   .lat-mini,.lat-salir{width:auto;white-space:nowrap}
   main.principal{margin-left:0;padding:0 16px 40px}
   .view-head h2{font-size:24px}
