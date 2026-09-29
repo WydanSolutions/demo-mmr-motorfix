@@ -177,6 +177,9 @@ function datosDeEjemplo(){
     {id:'k2',_t:n(),chasis:'9BM958424HB012345',codigo:'MB-2022-07',descripcion:'Actualización de software de la central',realizado:true},
   ];
 
+  // Camiones con matrícula de Brasil: el taller está en la frontera y atiende de los dos lados.
+  camionesBrasilEjemplo().forEach(c=>camiones.push(c));
+
   return {cfg:cfg,clientes:clientes,camiones:camiones,presupuestos:presupuestos,ordenes:ordenes,movimientos:movimientos,funcionarios:funcionarios,campanas:campanas,contactos:[]};
 }
 

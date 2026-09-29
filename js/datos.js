@@ -186,14 +186,6 @@ const Store={
     if(!this.data.cfg) this.data.cfg=cfgDef();
     // completa lo que falte si se agregó una opción nueva después de la primera carga
     const d=cfgDef(); Object.keys(d).forEach(k=>{ if(this.data.cfg[k]===undefined) this.data.cfg[k]=d[k]; });
-    // Camiones brasileños: se agregan una sola vez a quien ya tenía el demo abierto de antes.
-    if(!this.data.cfg._camionesBR){
-      this.data.cfg._camionesBR=true;
-      const hay=m=>(this.data.camiones||[]).some(c=>normMat(c.matricula)===normMat(m));
-      (typeof camionesBrasilEjemplo==='function'?camionesBrasilEjemplo():[]).forEach(c=>{
-        if(!hay(c.matricula)) (this.data.camiones=this.data.camiones||[]).push(c);
-      });
-    }
     // cotizaciones viejas (solo dólar, guardadas como número) → forma nueva {usd, brl}
     const c=this.data.cfg;
     if(typeof c.tcHoy==='number') c.tcHoy={usd:c.tcHoy,brl:0};

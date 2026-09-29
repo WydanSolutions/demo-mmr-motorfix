@@ -5,21 +5,19 @@
  * - MODO_DEMO: links de demostración (wydan-demos) o ?demo=1 → datos inventados en el navegador, sin Firebase.
  * - MODO_LOCAL: en esta computadora se usan los emuladores de Firebase, así nunca se tocan los datos reales.
  */
-const FIREBASE_CONFIG={
-  apiKey:'AIzaSyA137qhdUWf7m1vdPsPiM_ioG8Z0S0zcmw',
-  authDomain:'mecanica-machado.firebaseapp.com',
-  projectId:'mecanica-machado',
-  storageBucket:'mecanica-machado.firebasestorage.app',
-  messagingSenderId:'1036112095977',
-  appId:'1:1036112095977:web:2acc1fe771228e1d231e78'
-};
+/* Sin datos del proyecto: esta copia no se conecta a ningún lado. */
+const FIREBASE_CONFIG={};
 
 /* Quién puede entrar. ⚠ Tiene que coincidir con la lista de firestore.rules. */
-const CORREO_TALLER='mecanicamachadorivera1@gmail.com';   // el del taller: va puesto solo, no se escribe
-const CORREO_SOPORTE='wydan.solutions@gmail.com';         // soporte de Wydan
+const CORREO_TALLER='taller@ejemplo.com';   // copia de demostración: correo inventado
+const CORREO_SOPORTE='soporte@ejemplo.com'; // copia de demostración: correo inventado
 const USUARIOS_PERMITIDOS=[CORREO_TALLER,CORREO_SOPORTE];
 
-/* Esta copia es SIEMPRE demostración: datos inventados en el navegador, nunca la base real. */
+/* Tres modos, decididos por la dirección desde la que se abre la página:
+   · MODO_DEMO  → links de demostración o ?demo=1: datos inventados en el navegador, sin nube.
+   · MODO_LOCAL → localhost: trabaja contra los emuladores, nunca contra los datos reales.
+   · ninguno de los dos → la página real: Firestore y Firebase Auth. */
+/* Copia de demostración: SIEMPRE modo demo. Datos inventados en el navegador, nunca la nube. */
 const MODO_DEMO=true;
 const MODO_LOCAL=['localhost','127.0.0.1'].indexOf(location.hostname)>=0;
 
